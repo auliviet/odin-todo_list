@@ -1,17 +1,11 @@
 export class Task {
-    constructor(
-        title = "", 
-        dueDate = "", 
-        description = "",
-        priority = "",
-        project= "",
-        isComplete = false) {
-            this.title = title;
-            this.dueDate = dueDate;
-            this.description = description;
-            this.priority = priority;
-            this.project = project;
-            this.isComplete = isComplete;
+    constructor(obj) {
+            this.title = obj.title != null ? obj.title : null;
+            this.dueDate = obj.dueDate != null ? obj.dueDate : new Date();
+            this.description = obj.description != null ? obj.description : null;
+            this.priority = obj.priority != null ? obj.priority : null;
+            this.project = obj.project != null ? obj.project : null;
+            this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
 
     complete() {
@@ -19,3 +13,4 @@ export class Task {
         this.isComplete = completion;
     }
 }
+
