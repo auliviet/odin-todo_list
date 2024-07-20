@@ -3,7 +3,7 @@ export class Task {
             this.title = obj.title != null ? obj.title : null;
             this.dueDate = new DateOnly(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
-            this.priority = obj.priority != null ? obj.priority : 3;
+            this.priority = new Priority(obj.priority);
             this.project = obj.project != null ? obj.project : null;
             this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
@@ -33,7 +33,28 @@ class DateOnly {
 
 class Priority {
     constructor(priority = 3) {
-        this.priority = priority;
+        this.index = priority;
+        return this.index;
+    }
+
+    get value() {
+        switch (this.index) {
+            case 0:
+                return "high priority";
+                break;
+
+            case 1:
+                return "medium priority";
+                break;
+
+            case 2:
+                return "low priority";
+                break;
+
+            default:
+                return "no priority";
+                break;
+        }
     }
 }
 
@@ -52,7 +73,7 @@ export class Tasks {
     }
 
     sortByPriority(tasks = this.tasks) {
-        let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
+        let tasksSorted = tasks.toSorted((a, b) => a.priority.index - b.priority.index);
 
         return tasksSorted;
     }
