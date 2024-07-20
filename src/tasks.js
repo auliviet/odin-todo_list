@@ -15,7 +15,7 @@ export class Task {
     }
 
     complete() {
-        let completion = this.isComplete = false ? true : false;
+        let completion = this.isComplete == false ? true : false;
         this.isComplete = completion;
     }
 }
