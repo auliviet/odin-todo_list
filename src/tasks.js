@@ -14,3 +14,13 @@ export class Task {
     }
 }
 
+export class Tasks {
+    constructor(data) {
+        this.tasks = [];
+
+        for (let task in data) {
+            let currentTask = data[task];
+            this.tasks.push(new Task(currentTask));
+        }
+    }
+}
