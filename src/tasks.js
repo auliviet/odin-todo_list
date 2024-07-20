@@ -1,19 +1,27 @@
 export class Task {
     constructor(obj) {
             this.title = obj.title != null ? obj.title : null;
-            this.dueDate = this.#setDate(obj.dueDate); 
+            this.dueDate = new DateOnly(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
             this.priority = obj.priority != null ? obj.priority : 3;
             this.project = obj.project != null ? obj.project : null;
             this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
 
-    #setDate(date = null) {
+    complete() {
+        let completion = this.isComplete == false ? true : false;
+        this.isComplete = completion;
+    }
+}
+
+class DateOnly {
+    constructor(date = null) {
         if (date == null) {
             date = new Date();
         }
         else {
             date = new Date(date);
+            console.log(date);
         }
 
         let year = date.getFullYear();
@@ -23,10 +31,16 @@ export class Task {
         return new Date(year, month, day);
     }
 
-    complete() {
-        let completion = this.isComplete == false ? true : false;
-        this.isComplete = completion;
+}
+
+class Priority {
+    constructor(priority = 3) {
+        this.priority = priority;
     }
+}
+
+class Project {
+
 }
 
 export class Tasks {
@@ -72,3 +86,4 @@ export class Tasks {
         return tasksFiltered;
     }
 }
+
