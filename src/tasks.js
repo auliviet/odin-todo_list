@@ -21,7 +21,6 @@ class DateOnly {
         }
         else {
             date = new Date(date);
-            console.log(date);
         }
 
         let year = date.getFullYear();
@@ -30,7 +29,6 @@ class DateOnly {
 
         return new Date(year, month, day);
     }
-
 }
 
 class Priority {
@@ -53,14 +51,6 @@ export class Tasks {
         }
     }
 
-    #removeTimeFromDate(date) {
-        let year = date.getFullYear();
-        let month = date.getMonth();
-        let day = date .getDate();
-
-        return new Date(`${year}-${month}-${day}`); 
-    }
-
     sortByPriority(tasks = this.tasks) {
         let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
 
@@ -68,14 +58,14 @@ export class Tasks {
     }
 
     filterByDate(startDate, endDate) {
-        startDate = this.#removeTimeFromDate(startDate);
-        endDate = this.#removeTimeFromDate(endDate);
+        startDate = new DateOnly(startDate);
+        endDate = new DateOnly(endDate);
 
         let tasksFiltered = [];
 
         for (let task in this.tasks) {
             let currentTask = this.tasks[task];
-            let dueDate = this.#removeTimeFromDate(currentTask.dueDate);
+            let dueDate = new DateOnly(currentTask.dueDate);
 
             if (dueDate >= startDate &&
                 dueDate <= endDate) {
