@@ -3,7 +3,7 @@ export class Task {
             this.title = obj.title != null ? obj.title : null;
             this.dueDate = this.#setDate(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
-            this.priority = obj.priority != null ? obj.priority : null;
+            this.priority = obj.priority != null ? obj.priority : 3;
             this.project = obj.project != null ? obj.project : null;
             this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
@@ -47,9 +47,10 @@ export class Tasks {
         return new Date(`${year}-${month}-${day}`); 
     }
 
-    sort() {
-        // Sort tasks by priority
+    sortByPriority(tasks = this.tasks) {
+        let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
 
+        return tasksSorted;
     }
 
     filterByDate(startDate, endDate) {
