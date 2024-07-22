@@ -1,3 +1,11 @@
+import { 
+    endOfMonth, 
+    endOfToday, 
+    endOfWeek, 
+    startOfToday, 
+    startOfTomorrow } from 'date-fns';
+
+
 export class Task {
     constructor(obj) {
             this.title = obj.title != null ? obj.title : null;
@@ -72,13 +80,41 @@ export class Tasks {
         }
     }
 
-    sortByPriority(tasks = this.tasks) {
+    get overdue() {
+        // TO DO
+    }
+    
+    get today() {
+        let startDate = startOfToday();
+        let endDate = endOfToday();
+        let todayTasks = this.#filterByDate(startDate, endDate);
+
+        return this.#sortByPriority(todayTasks);
+    }
+
+    get thisWeek() {
+        let startDate = startOfTomorrow();
+        let endDate = endOfWeek(startOfToday(), { weekStartsOn: 1 }); 
+        let thisWeekTasks = this.#filterByDate(startDate, endDate);
+
+        return this.#sortByPriority(thisWeekTasks);
+    }
+
+    get thisMonth() {
+        // TO DO
+    }
+
+    get later() {
+        // TO DO
+    }
+
+    #sortByPriority(tasks = this.tasks) {
         let tasksSorted = tasks.toSorted((a, b) => a.priority.index - b.priority.index);
 
         return tasksSorted;
     }
 
-    filterByDate(startDate, endDate) {
+    #filterByDate(startDate, endDate) {
         startDate = new DateOnly(startDate);
         endDate = new DateOnly(endDate);
 
