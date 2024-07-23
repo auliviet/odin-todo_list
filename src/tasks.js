@@ -1,9 +1,12 @@
 import { 
+    add,
     endOfMonth, 
     endOfToday, 
     endOfWeek, 
+    endOfYesterday, 
     startOfToday, 
-    startOfTomorrow } from 'date-fns';
+    startOfTomorrow,
+    startOfWeek } from 'date-fns';
 
 
 export class Task {
@@ -81,7 +84,11 @@ export class Tasks {
     }
 
     get overdue() {
-        // TO DO
+        let startDate = new DateOnly(0);
+        let endDate = endOfYesterday();
+        let overdueTasks = this.#filterByDate(startDate, endDate);
+
+        return this.#sortByPriority(overdueTasks);
     }
     
     get today() {
@@ -101,7 +108,14 @@ export class Tasks {
     }
 
     get thisMonth() {
-        // TO DO
+        let thisWeek = startOfWeek(startOfToday(), { weekStartsOn: 1});
+        let nextWeek = add(thisWeek, {weeks: 1});
+
+        let startDate = nextWeek; 
+        let endDate = endOfMonth(startOfToday());
+        let thisMonthTasks = this.#filterByDate(startDate, endDate);
+
+        return this.#sortByPriority(thisMonthTasks);
     }
 
     get later() {
