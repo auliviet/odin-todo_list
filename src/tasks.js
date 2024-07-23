@@ -4,6 +4,7 @@ import {
     endOfToday, 
     endOfWeek, 
     endOfYesterday, 
+    startOfMonth, 
     startOfToday, 
     startOfTomorrow,
     startOfWeek } from 'date-fns';
@@ -119,7 +120,15 @@ export class Tasks {
     }
 
     get later() {
-        // TO DO
+        let thisMonth = startOfMonth(startOfToday());
+        let nextMonth = add(thisMonth, {months: 1});
+        let endOfTime = new DateOnly(8640000000000000);
+
+        let startDate = nextMonth;
+        let endDate = endOfTime;
+        let laterTasks = this.#filterByDate(startDate, endDate);
+
+        return this.#sortByPriority(laterTasks);
     }
 
     #sortByPriority(tasks = this.tasks) {
