@@ -1,22 +1,28 @@
-import data from "./test.json";
+import data from "../test.json";
 
 export class Storage {
     #testData = data;
 
     constructor() {
+        if (this.#storageAvailable("localStorage")) {
+            return this.#getStoredData();
+        } else {
+            alert("Local Storage is not available on your browser. All changes will be lost when you close this window.")
+            return  this.#testData;
+        }
+    }
+
+    #getStoredData() {
+        // If no existing data stored, populate with test data.
         if (!localStorage.getItem("tasks")) {
-            this.#populateTestData();
-        } 
+            this.populateStorage(this.#testData);
+        }
 
         return JSON.parse(localStorage.getItem("tasks"));
     }
 
-    #populateTestData() {
-        if (this.#storageAvailable("localStorage")) {
-            localStorage.setItem("tasks", JSON.stringify(this.#testData));
-        } else {
-            console.log("Local Storage not available");
-        }
+    populateStorage(data) {
+        localStorage.setItem("tasks", JSON.stringify(data));
     }
 
     #storageAvailable(type) {

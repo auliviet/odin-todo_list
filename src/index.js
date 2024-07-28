@@ -1,11 +1,10 @@
-// Data
-import data from "./testData.json";
-
 // Scripts
-import { Tasks } from "./tasks.js";
+import { Tasks } from "./scripts/tasks.js";
+import { Storage } from "./scripts/storage.js";
 
+let data = new Storage();
 let tasks = new Tasks(data);
-console.log(tasks);
+
 
 console.log("Overdue: ", tasks.overdue);
 console.log("Today: ", tasks.today);
