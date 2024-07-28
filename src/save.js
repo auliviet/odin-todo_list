@@ -1,9 +1,21 @@
-export class Save {
-    constructor(tasks) {
+import data from "./test.json";
+
+export class Storage {
+    #testData = data;
+
+    constructor() {
+        if (!localStorage.getItem("tasks")) {
+            this.#populateTestData();
+        } 
+
+        return JSON.parse(localStorage.getItem("tasks"));
+    }
+
+    #populateTestData() {
         if (this.#storageAvailable("localStorage")) {
-            localStorage.setItem("tasks", tasks);
+            localStorage.setItem("tasks", JSON.stringify(this.#testData));
         } else {
-            console.log("No local storage available");
+            console.log("Local Storage not available");
         }
     }
 
