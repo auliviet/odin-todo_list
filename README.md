@@ -24,3 +24,9 @@ Exercise for the Odin Project - Full-stack JavaScript on organising JavaScript
 -- Set up a function that saves the projects (and todos) to localStorage every time a new project (or todo) is created, and another function that looks for that data in localStorage when your app is first loaded. 
 -- Make sure your app doesn’t crash if the data you may want to retrieve from localStorage isn’t there!
 -- You can inspect data you saved in localStorage using DevTools. 
+
+# TODO 
+- Get textarea to match the height of the content
+- Remove the calendar from the date input
+- tSubmit updates to task
+- Create new tasks
