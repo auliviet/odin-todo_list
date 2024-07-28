@@ -11,7 +11,8 @@ import {
 
 
 export class Task {
-    constructor(obj) {
+    constructor(obj, id= 0) {
+            this.id = id;
             this.title = obj.title != null ? obj.title : null;
             this.dueDate = new DateOnly(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
@@ -43,30 +44,21 @@ class DateOnly {
     }
 }
 
-class Priority {
+export class Priority {
     constructor(priority = 3) {
         this.index = priority;
         return this.index;
     }
 
+    static values = [
+        "high priority",
+        "medium priority",
+        "low priority",
+        "no priority"
+    ]
+
     get value() {
-        switch (this.index) {
-            case 0:
-                return "high priority";
-                break;
-
-            case 1:
-                return "medium priority";
-                break;
-
-            case 2:
-                return "low priority";
-                break;
-
-            default:
-                return "no priority";
-                break;
-        }
+        return Priority.values[this.index];
     }
 }
 
@@ -77,10 +69,13 @@ class Project {
 export class Tasks {
     constructor(data) {
         this.tasks = [];
+        let id = 0;
 
         for (let task in data) {
             let currentTask = data[task];
-            this.tasks.push(new Task(currentTask));
+            this.tasks.push(new Task(currentTask, id));
+
+            id++;
         }
     }
 
