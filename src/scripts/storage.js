@@ -12,6 +12,10 @@ export class Storage {
         }
     }
 
+    static populateStorage(data) {
+        localStorage.setItem("tasks", JSON.stringify(data));
+    }
+
     #getStoredData() {
         // If no existing data stored, populate with test data.
         if (!localStorage.getItem("tasks")) {
@@ -19,10 +23,6 @@ export class Storage {
         }
 
         return JSON.parse(localStorage.getItem("tasks"));
-    }
-
-    populateStorage(data) {
-        localStorage.setItem("tasks", JSON.stringify(data));
     }
 
     #storageAvailable(type) {
