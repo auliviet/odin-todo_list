@@ -13,9 +13,6 @@ import { Storage } from "./scripts/storage.js";
 import { Task, DateOnly } from './scripts/tasks.js';
 import { DOM } from './scripts/display.js';
 
-// Test data
-import testData from './test.json';
-
 class Todo {
     constructor() {
         this.tasks = [];
@@ -30,13 +27,15 @@ class Todo {
     }
 
     updateTask(obj, id) {
-        this.tasks[id] = obj;
+        this.tasks[id] = new Task(obj);
         Storage.populateStorage(this.tasks);
+        let display = new DOM(this); 
     }
 
     createTask(obj) {
-        this.tasks.push(new Task(obj, /*id*/));
+        this.tasks.push(new Task(obj, this.tasks.length));
         Storage.populateStorage(this.tasks);
+        let display = new DOM(this); 
     }
 
     get overdue() {
@@ -112,20 +111,4 @@ class Todo {
     }
 }
 
-const tasks = new Todo();
-
-console.log("Overdue: ", tasks.overdue);
-console.log("Today: ", tasks.today);
-console.log("This week: ", tasks.thisWeek);
-console.log("This month: ", tasks.thisMonth);
-console.log("Later: ", tasks.later);
-
-/* let updatedTask = {
-    "title": "Create mobile designs",
-    "dueDate": "2024-09-23",
-    "priority": 1,
-    "project": "Mobile"
-};
-
-tasks.updateTask(updatedTask, 0);
-console.log("Later: ", tasks.later); */
+export const tasks = new Todo();
