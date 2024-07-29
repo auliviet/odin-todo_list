@@ -10,6 +10,7 @@ export class DOM {
 
     #render() {
         let body = document.querySelector("body");
+        body.textContent = ""
 
         body.append(new Board(this.tasks));
     }
