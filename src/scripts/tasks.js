@@ -69,13 +69,10 @@ class Project {
 export class Tasks {
     constructor(data) {
         this.tasks = [];
-        let id = 0;
 
-        for (let task in data) {
-            let currentTask = data[task];
+        for (let id in data) {
+            let currentTask = data[id];
             this.tasks.push(new Task(currentTask, id));
-
-            id++;
         }
     }
 
