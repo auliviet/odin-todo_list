@@ -9,8 +9,7 @@ import {
     startOfTomorrow,
     startOfWeek } from 'date-fns';
 
-
-export class Task {
+class Task {
     constructor(obj, id= 0) {
             this.id = id;
             this.title = obj.title != null ? obj.title : null;
