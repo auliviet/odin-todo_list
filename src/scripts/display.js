@@ -4,7 +4,6 @@ import { Board } from "../components/board";
 export class DOM {
     constructor(data) {
         this.tasks = data;
-        console.log(this.tasks);
 
         this.#render();   
     }
