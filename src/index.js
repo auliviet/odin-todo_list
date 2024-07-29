@@ -26,7 +26,7 @@ class Todo {
             this.tasks.push(new Task(currentTask, id));
         }
 
-        let display = new DOM(this.tasks);
+        let display = new DOM(this);
     }
 
     updateTask(obj, id) {
