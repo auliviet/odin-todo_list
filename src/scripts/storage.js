@@ -19,7 +19,7 @@ export class Storage {
     #getStoredData() {
         // If no existing data stored, populate with test data.
         if (!localStorage.getItem("tasks")) {
-            this.populateStorage(this.#testData);
+            Storage.populateStorage(this.#testData);
         }
 
         return JSON.parse(localStorage.getItem("tasks"));
