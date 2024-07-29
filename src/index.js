@@ -25,6 +25,8 @@ class Todo {
             let currentTask = data[id];
             this.tasks.push(new Task(currentTask, id));
         }
+
+        let display = new DOM(this.tasks);
     }
 
     updateTask(obj, id) {
@@ -118,7 +120,7 @@ console.log("This week: ", tasks.thisWeek);
 console.log("This month: ", tasks.thisMonth);
 console.log("Later: ", tasks.later);
 
-let updatedTask = {
+/* let updatedTask = {
     "title": "Create mobile designs",
     "dueDate": "2024-09-23",
     "priority": 1,
@@ -126,4 +128,4 @@ let updatedTask = {
 };
 
 tasks.updateTask(updatedTask, 0);
-console.log("Later: ", tasks.later);
+console.log("Later: ", tasks.later); */
