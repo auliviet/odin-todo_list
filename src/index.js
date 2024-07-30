@@ -86,7 +86,7 @@ class Todo {
     }
 
     #sortByPriority(tasks = this.tasks) {
-        let tasksSorted = tasks.toSorted((a, b) => a.priority.index - b.priority.index);
+        let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
 
         return tasksSorted;
     }
@@ -112,3 +112,4 @@ class Todo {
 }
 
 export const tasks = new Todo();
+console.log(tasks.overdue)
