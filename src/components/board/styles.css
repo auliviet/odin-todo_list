@@ -1,0 +1,11 @@
+.board { 
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+  overflow: scroll;
+  
+  @media (min-width: 1024px) {
+    flex-flow: row;
+  }
+}
