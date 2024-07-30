@@ -1,9 +1,11 @@
 import data from "../test.json";
+import { Todo } from "..";
 
 export class Storage {
-    #testData = data;
+    #testData = new Todo(data).tasks;
 
     constructor() {
+        console.log(this.#testData)
         if (this.#storageAvailable("localStorage")) {
             return this.#getStoredData();
         } else {

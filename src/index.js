@@ -13,8 +13,6 @@ import { Storage } from "./scripts/storage.js";
 import { Task, DateOnly } from './scripts/tasks.js';
 import { DOM } from './scripts/display.js';
 
-let data = new Storage(); 
-
 export class Todo {
     constructor(data) {
         this.tasks = [];
@@ -115,4 +113,5 @@ export class Todo {
     }
 }
 
+let data = new Storage(); 
 export const tasks = new Todo(data);
