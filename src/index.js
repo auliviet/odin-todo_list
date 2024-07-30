@@ -13,6 +13,8 @@ import { Storage } from "./scripts/storage.js";
 import { Task, DateOnly } from './scripts/tasks.js';
 import { DOM } from './scripts/display.js';
 
+import './styles.css';
+
 export class Todo {
     constructor(data) {
         this.tasks = [];

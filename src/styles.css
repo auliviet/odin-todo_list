@@ -1,0 +1,114 @@
+/*  || RESET  */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border: none;
+    vertical-align: baseline;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+}
+
+article, 
+aside, 
+footer, 
+header, 
+menu, 
+nav, 
+section {
+	display: block;
+}
+
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/*  || SIZES  */
+html {
+  font-size: 8px;
+
+  @media (min-width: 1024px) {font-size: 10px;}
+}
+
+/*  || COLOURS  */
+:root {
+  --black: #0A0A0A;
+  --black25: #0A0A0A44; 
+  --white: #FFF;
+  --light-grey: #FAFAFA;
+  --grey: #E5E5E5;
+  --dark-grey: #525252;
+  --red: #B91C1C;
+  --red50:#B91C1C88; 
+  --yellow: #EAB308;
+  --yellow50: #EAB30888;
+  --green: #4D7C0F;
+  --green50: #4D7C0F88;
+  --green80: #4D7C0FCC;
+}
+
+html {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+
+/*  || TYPOGRAPHY */
+:root,
+input[type="date"],
+textarea {
+  font-family: Helvetica, sans-serif; 
+}
+
+body {
+  font-size: 2rem; 
+  line-height: 2rem;
+}
+
+h1 {
+  font-size: 8rem;
+  line-height: 8rem;
+  text-transform: uppercase;
+}
+  
+h2 {
+  font-size: 4rem;
+  line-height: 4rem;
+  color: var(--dark-grey);
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: var(--dark-grey);
+}
+
+/*  || UTILITIES */
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  width: max(320px, 60vw);
+  margin: auto;
+
+  @media (min-width: 1024px) {
+    width: 100%;
+  }
+}
