@@ -5,7 +5,6 @@ export class Task {
             this.dueDate = new DateOnly(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
             this.priority = obj.priority != null ? obj.priority : 3;
-            this.project = obj.project != null ? obj.project : null;
             this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
 
@@ -32,9 +31,6 @@ export class DateOnly {
     }
 }
 
-class Project {
-
-}
 
 
 

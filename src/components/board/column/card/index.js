@@ -10,7 +10,6 @@ export class Card {
         this.dueDate = data.dueDate; 
         this.description = data.description;
         this.priority = data.priority;
-        this.project = data.project;
         this.isComplete = data.isComplete;
 
         return this.#render();
@@ -126,14 +125,6 @@ export class Card {
         return description;
     }
 
-    /* #project() {
-        let project = document.createElement("div");
-        project.className = "card__project-pill";
-        project.textContent = `#${this.project}`;
-
-        return project;
-    } */
-
     #buttons() {
         let buttonsRow = document.createElement("div");
         buttonsRow.className = "card__buttons";
@@ -157,8 +148,7 @@ export class Card {
         section.append(this.#title());
         if (this.description != null) {
             section.append(this.#description());
-        }
-        section.append(this.#project()); */
+        } */
 
         return card;
     }
@@ -226,14 +216,12 @@ class SaveButton extends Button {
         let dueDate = form.dueDate.value;
         let description = form.description.value;
         let priority = form.priority.value;
-        //let project = form.project.value;
         //let isComplete = form.isComplete.value;
 
         //console.log(title);
         //console.log(dueDate);
         //console.log(description);
         //console.log(priority);
-        //console.log(project);
         //console.log(isComplete);
 
         return {
