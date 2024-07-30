@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { Priority } from '/src/scripts/tasks';
+import { tasks } from '/src';
 
 import "./styles.css";
 
@@ -84,14 +84,21 @@ export class Card {
         select.name = "priority";
         select.id = "priority";
 
-        for (let index in Priority.values) {
-            let priority = Priority.values[index];
+        let priorities = [
+            "high priority",
+            "medium priority",
+            "low priority",
+            "no priority"
+        ]
+
+        for (let index in priorities) {
+            let priority = priorities[index];
 
             let option = document.createElement("option");
-            option.value = priority;
+            option.value = index;
             option.textContent = priority;
 
-            if (priority == this.priority.value) {
+            if (index == this.priority) {
                 option.selected = true;
             }
 
@@ -208,7 +215,9 @@ class SaveButton extends Button {
         event.preventDefault();
         console.log("ID = ", this.id)
         
-        this.#getFormData();
+        let task = this.#getFormData();
+        console.log("task =", task)
+        tasks.updateTask(task, this.id);
     }
 
     #getFormData() {
@@ -220,12 +229,19 @@ class SaveButton extends Button {
         //let project = form.project.value;
         //let isComplete = form.isComplete.value;
 
-        console.log(title);
-        console.log(dueDate);
-        console.log(description);
-        console.log(priority);
+        //console.log(title);
+        //console.log(dueDate);
+        //console.log(description);
+        //console.log(priority);
         //console.log(project);
         //console.log(isComplete);
+
+        return {
+            title,
+            dueDate,
+            description,
+            priority
+        }
     }
 }
 

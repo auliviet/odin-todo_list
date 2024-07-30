@@ -4,7 +4,7 @@ export class Task {
             this.title = obj.title != null ? obj.title : null;
             this.dueDate = new DateOnly(obj.dueDate); 
             this.description = obj.description != null ? obj.description : null;
-            this.priority = new Priority(obj.priority);
+            this.priority = obj.priority != null ? obj.priority : 3;
             this.project = obj.project != null ? obj.project : null;
             this.isComplete = obj.isComplete != null ? obj.isComplete : false;
     }
@@ -29,24 +29,6 @@ export class DateOnly {
         let day = date .getDate();
 
         return new Date(year, month, day);
-    }
-}
-
-export class Priority {
-    constructor(priority = 3) {
-        this.index = priority;
-        return this.index;
-    }
-
-    static values = [
-        "high priority",
-        "medium priority",
-        "low priority",
-        "no priority"
-    ]
-
-    get value() {
-        return Priority.values[this.index];
     }
 }
 
