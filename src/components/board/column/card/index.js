@@ -250,7 +250,7 @@ class SaveButton extends Button {
         let title = form.title.value;
         let dueDate = form.dueDate.value;
         let description = form.description.value;
-        let priority = form.priority.value;
+        let priority = Number(form.priority.value);
         let isComplete = form.isComplete.value;
 
         return {
