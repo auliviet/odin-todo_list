@@ -111,7 +111,7 @@
   }
 
   & .card__buttons {
-    display: flex;
+    display: none;
     flex-flow: row;
     gap: 2rem;
     justify-content: center;

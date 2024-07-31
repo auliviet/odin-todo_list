@@ -23,7 +23,12 @@ export class Card {
         form.append(this.#formHeader());
         form.append(this.#title());
         form.append(this.#description());
-        form.append(this.#buttons());
+        
+        let buttons = this.#buttons();
+        form.append(buttons);
+        form.addEventListener("click", () => {
+            this.#displayButtonsEvent(buttons);
+        })
 
         return form;
     }
@@ -151,6 +156,10 @@ export class Card {
         } */
 
         return card;
+    }
+
+    #displayButtonsEvent(buttons) {
+        buttons.style.display = "flex";
     }
 }
 
