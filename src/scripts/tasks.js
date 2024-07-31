@@ -16,7 +16,7 @@ export class Task {
 
 export class DateOnly {
     constructor(date = null) {
-        if (date == null) {
+        if (date == null || date == "") {
             date = new Date();
         }
         else {

@@ -47,7 +47,7 @@ export class Todo {
     }
 
     get overdue() {
-        let startDate = new DateOnly(0);
+        let startDate = new DateOnly(1);
         let endDate = endOfYesterday();
         let overdueTasks = this.#filterByDate(startDate, endDate);
 
