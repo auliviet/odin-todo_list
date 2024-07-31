@@ -17,7 +17,7 @@ export class Card {
 
     #form() {
         let form = document.createElement("form");
-        form.name = this.title;
+        form.name = `task-${this.id}`;
         form.id = `task-${this.id}`;
 
         form.append(this.#formHeader());
@@ -43,11 +43,11 @@ export class Card {
     #status() {
         let status = new Input(
             "checkbox",
-            "completion-status",
-            "complete"
+            "isComplete",
+            "true"
         )
 
-        switch (this.priority.index) {
+        switch (this.priority) {
             case 0:
                 status.className += " red";
                 break;
@@ -169,14 +169,25 @@ class Input {
 
 class TextArea {
     constructor(name, value = "") {
+        let textareaWrapper = document.createElement("div");
+        textareaWrapper.className = `card__textarea-wrapper card__textarea-wrapper-${name}`;
+
         let textarea = document.createElement("textarea");
         textarea.className = `card__${name}`;
         textarea.id = name;
         textarea.name = name;
         textarea.placeholder = name;
         textarea.value = value;
+        textarea.rows = 1;
+        textareaWrapper.append(textarea);
 
-        return textarea;
+        textareaWrapper.dataset.replicatedValue = textarea.value;
+
+        textarea.addEventListener("input", () => {
+            textareaWrapper.dataset.replicatedValue = textarea.value;
+          });
+
+        return textareaWrapper;
     }
 }
 
@@ -216,19 +227,14 @@ class SaveButton extends Button {
         let dueDate = form.dueDate.value;
         let description = form.description.value;
         let priority = form.priority.value;
-        //let isComplete = form.isComplete.value;
-
-        //console.log(title);
-        //console.log(dueDate);
-        //console.log(description);
-        //console.log(priority);
-        //console.log(isComplete);
+        let isComplete = form.isComplete.value;
 
         return {
             title,
             dueDate,
             description,
-            priority
+            priority,
+            isComplete
         }
     }
 }

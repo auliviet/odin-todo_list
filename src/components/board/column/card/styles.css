@@ -1,0 +1,142 @@
+.card {
+  list-style: none;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
+  border-radius: 1rem;
+  background-color: var(--white);
+
+  & input {
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0;
+  }
+
+  & .card__header {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0;
+
+    & .card__isComplete {
+      flex-shrink: 0;
+      height: 2rem;
+      width: 2rem;
+      margin: 0 0 0 -1rem;
+      appearance: none;
+      background-color: var(--light-grey);
+      border: 2px solid var(--button-color);
+      border-radius: 1rem;
+      --button-color: var(--dark-grey);
+      --button-color50: var(--grey);
+
+      &:hover {
+        background-color: var(--button-color50);
+        box-shadow: inset 0 0 0 2px var(--white); 
+        cursor: pointer;
+      }
+
+      &:checked {
+        background-color: var(--button-color);
+        box-shadow: inset 0 0 0 2px var(--white); 
+      }
+
+      &.red {
+        --button-color: var(--red);
+        --button-color50: var(--red50);
+      }
+
+      &.yellow {
+        --button-color: var(--yellow); 
+        --button-color50: var(--yellow50);
+      }
+
+      &.green {
+        --button-color: var(--green);
+        --button-color50: var(--green50);
+      }
+    }
+
+    & .card__dueDate,
+    & .card__priority {
+      appearance: none;
+      flex: 1;
+      font-weight: lighter;
+      font-style: italic;    
+      color: var(--dark-grey);
+      font-size: 1rem; 
+    }
+
+    & .card__priority {
+      padding: 0;
+      text-align: right;
+      background-color: var(--white);
+    }
+  }
+
+  & .card__textarea-wrapper {
+    display: grid;
+
+    &::after {
+      content: attr(data-replicated-value) " ";
+      white-space: pre-wrap;
+      visibility: hidden;
+    }
+
+    & textarea {
+      resize: none;
+      overflow: hidden;
+    }
+
+    &::after,
+    & textarea {
+      grid-area: 1 / 1 / 2 / 2;
+      line-height: 2rem;
+      padding: 0;
+    }
+  }
+
+  & .card__textarea-wrapper-title::after,
+  & .card__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold; 
+  }
+
+  & .card__textarea-wrapper-description::after,
+  & .card__description {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: var(--dark-grey);
+  }
+
+  & .card__buttons {
+    display: flex;
+    flex-flow: row;
+    gap: 2rem;
+    justify-content: center;
+
+    & button {
+      height: 2rem;
+      padding: 0 2rem;
+      line-height: 2rem;
+      border-radius: .5rem;
+      background-color: var(--grey);
+      color: var(--dark-grey);
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 0 .5rem var(--black25);
+      }
+  
+      &.card__button-save {
+        background-color: var(--green80);
+        color: var(--white);
+  
+        &:hover {
+          background-color: var(--green);
+        }
+      }
+    }
+  }
+}
