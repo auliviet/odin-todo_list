@@ -60,14 +60,18 @@
     & .card__dueDate,
     & .card__priority {
       appearance: none;
-      flex: 1;
       font-weight: lighter;
       font-style: italic;    
       color: var(--dark-grey);
       font-size: 1rem; 
     }
 
+    & .card__dueDate {
+      flex: 0;
+    }
+
     & .card__priority {
+      flex: 1;
       padding: 0;
       text-align: right;
       background-color: var(--white);
