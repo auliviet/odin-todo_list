@@ -130,7 +130,7 @@ export class Card {
         buttonsRow.className = "card__buttons";
 
         buttonsRow.append(
-            new Button("cancel", "reset"),
+            new CancelButton(this.id),
             new SaveButton(this.id)
         )
 
@@ -183,6 +183,7 @@ class TextArea {
 
         textareaWrapper.dataset.replicatedValue = textarea.value;
 
+        // Autogrow textarea
         textarea.addEventListener("input", () => {
             textareaWrapper.dataset.replicatedValue = textarea.value;
           });
@@ -214,10 +215,8 @@ class SaveButton extends Button {
 
     #saveEvent(event) {
         event.preventDefault();
-        console.log("ID = ", this.id)
         
         let task = this.#getFormData();
-        console.log("task =", task)
         tasks.updateTask(task, this.id);
     }
 
@@ -236,6 +235,23 @@ class SaveButton extends Button {
             priority,
             isComplete
         }
+    }
+}
+
+class CancelButton extends Button {
+    constructor(id) {
+        let button = super("cancel", "reset");
+        
+        this.id = id;
+        button.addEventListener("click", (event) => this.#cancelEvent(event));
+
+        return button;
+    }
+
+    #cancelEvent(event) {
+        event.preventDefault();
+        
+        tasks.cancelTask();
     }
 }
 

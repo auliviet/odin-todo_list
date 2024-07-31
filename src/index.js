@@ -33,6 +33,10 @@ export class Todo {
         
         new DOM(this); 
     }
+    
+    cancelTask() {
+        new DOM(this);  
+    }
 
     createTask(obj) {
         let id = this.tasks.length;
