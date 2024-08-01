@@ -5,7 +5,9 @@ import "./styles.css";
 export class Column {
     constructor(title, data) {
         this.title = title;
+        this.class = title.toLowerCase().replace(" ", "-");
         this.tasks = data;
+
 
         return this.#render();
     }
@@ -33,7 +35,7 @@ export class Column {
 
     #render() {
         let column = document.createElement("section");
-        column.className = "column";
+        column.className = `column ${this.class}`;
 
         column.append(this.#title());
         column.append(this.#cards());
