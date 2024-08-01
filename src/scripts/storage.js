@@ -2,14 +2,13 @@ import data from "../test.json";
 import { Todo } from "..";
 
 export class Storage {
-    #testData = new Todo(data).tasks;
 
     constructor() {
         if (this.#storageAvailable("localStorage")) {
             return this.#getStoredData();
         } else {
             alert("Local Storage is not available on your browser. All changes will be lost when you close this window.")
-            return  this.#testData;
+            return new Todo(data).tasks;
         }
     }
 
@@ -20,7 +19,8 @@ export class Storage {
     #getStoredData() {
         // If no existing data stored, populate with test data.
         if (!localStorage.getItem("tasks")) {
-            Storage.populateStorage(this.#testData);
+            let testData = new Todo(data).tasks;
+            Storage.populateStorage(testData);
         }
 
         return JSON.parse(localStorage.getItem("tasks"));
