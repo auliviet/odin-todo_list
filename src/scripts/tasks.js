@@ -1,11 +1,15 @@
 export class Task {
     constructor(obj, id= 0) {
-            this.id = id;
-            this.title = obj.title != null ? obj.title : null;
+            this.id = Number(id);
+            this.title = obj.title != null ? String(obj.title) : null;
             this.dueDate = new DateOnly(obj.dueDate); 
-            this.description = obj.description != null ? obj.description : null;
-            this.priority = obj.priority != null ? obj.priority : 3;
-            this.isComplete = obj.isComplete != null ? obj.isComplete : false;
+            this.description = obj.description != null ? 
+                String(obj.description) : 
+                null;
+            this.priority = obj.priority != null ? Number(obj.priority) : 3;
+            this.isComplete = obj.isComplete != null ? 
+                Boolean(obj.isComplete) : 
+                false;
     }
 
     complete() {
