@@ -60,7 +60,7 @@ export class Card {
         )
 
         if (this.isComplete == true) {
-            status.checked
+            status.checked = true;
         }
 
         switch (this.priority) {
@@ -248,12 +248,14 @@ class SaveButton extends Button {
         let dueDate = new Date(form.dueDate.value);
         let description = String(form.description.value);
         let priority = Number(form.priority.value);
+        let isComplete = Boolean(form.isComplete.checked);
 
         return {
             title,
             dueDate,
             description,
             priority,
+            isComplete
         }
     }
 }
