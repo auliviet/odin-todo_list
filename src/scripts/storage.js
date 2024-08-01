@@ -5,7 +5,6 @@ export class Storage {
     #testData = new Todo(data).tasks;
 
     constructor() {
-        console.log(this.#testData)
         if (this.#storageAvailable("localStorage")) {
             return this.#getStoredData();
         } else {
