@@ -45,55 +45,16 @@ export class Card {
         header.className = "card__header";
 
         header.append(
-            this.#status(), 
-            this.#dueDate(), 
-            this.#priority());
+            new StatusCheckbox(this), 
+            new Input(
+                "date", 
+                "dueDate", 
+                format(this.dueDate, "yyyy-MM-dd") 
+            ) , 
+            new Priority(this.priority)
+        );
 
         return header;
-    }
-
-    #status() {
-        return new StatusCheckbox(this);
-    }
-
-    #dueDate() {
-        let dueDate = new Input(
-            "date", 
-            "dueDate", 
-            format(this.dueDate, "yyyy-MM-dd") 
-        ) 
-
-        return dueDate;
-    }
-
-    #priority() {
-        let select = document.createElement("select");
-        select.className = "card__priority";
-        select.name = "priority";
-        select.id = "priority";
-
-        let priorities = [
-            "high priority",
-            "medium priority",
-            "low priority",
-            "no priority"
-        ]
-
-        for (let index in priorities) {
-            let priority = priorities[index];
-
-            let option = document.createElement("option");
-            option.value = index;
-            option.textContent = priority;
-
-            if (index == this.priority) {
-                option.selected = true;
-            }
-
-            select.append(option);
-        }
-
-        return select;
     }
 
     #title() {
@@ -187,15 +148,12 @@ class StatusCheckbox extends Input {
         switch (this.priority) {
             case 0:
                 return " red";
-                break;
     
             case 1:
                 return " yellow";
-                break;
     
             case 2:
                 return " green";
-                break;
         
             default:
                 break;
@@ -208,6 +166,46 @@ class StatusCheckbox extends Input {
         } else {
             return false;
         }
+    }
+}
+
+class Priority {
+    constructor(priority) {
+        this.priority = priority;
+
+        let select = this.#addOptions();
+        select.className = "card__priority";
+        select.name = "priority";
+        select.id = "priority";
+
+        return select;
+
+    }
+
+    #addOptions() {
+        let select = document.createElement("select");
+        const priorities = [
+            "high priority",
+            "medium priority",
+            "low priority",
+            "no priority"
+        ];
+
+        for (let index in priorities) {
+            let priority = priorities[index];
+    
+            let option = document.createElement("option");
+            option.value = index;
+            option.textContent = priority;
+    
+            if (index == this.priority) {
+                option.selected = true;
+            }
+    
+            select.append(option);
+        }
+
+        return select;
     }
 }
 
