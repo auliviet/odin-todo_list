@@ -59,6 +59,10 @@ export class Card {
             "true"
         )
 
+        if (this.isComplete == true) {
+            status.checked
+        }
+
         switch (this.priority) {
             case 0:
                 status.className += " red";
@@ -160,12 +164,6 @@ export class Card {
         
         card.append(this.#form());
 
-        /* section.append(this.#header());
-        section.append(this.#title());
-        if (this.description != null) {
-            section.append(this.#description());
-        } */
-
         return card;
     }
 
@@ -241,24 +239,21 @@ class SaveButton extends Button {
         event.preventDefault();
         
         let task = this.#getFormData();
-        console.log(task);
         tasks.updateTask(task, this.id);
     }
 
     #getFormData() {
         let form = document.querySelector(`#task-${this.id}`);
-        let title = form.title.value;
-        let dueDate = form.dueDate.value;
-        let description = form.description.value;
+        let title = String(form.title.value);
+        let dueDate = new Date(form.dueDate.value);
+        let description = String(form.description.value);
         let priority = Number(form.priority.value);
-        let isComplete = form.isComplete.value;
 
         return {
             title,
             dueDate,
             description,
             priority,
-            isComplete
         }
     }
 }
