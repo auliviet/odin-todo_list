@@ -53,34 +53,7 @@ export class Card {
     }
 
     #status() {
-        let status = new Input(
-            "checkbox",
-            "isComplete",
-            "true"
-        )
-
-        if (this.isComplete == true) {
-            status.checked = true;
-        }
-
-        switch (this.priority) {
-            case 0:
-                status.className += " red";
-                break;
-
-            case 1:
-                status.className += " yellow";
-                break;
-
-            case 2:
-                status.className += " green";
-                break;
-        
-            default:
-                break;
-        }
-
-        return status;
+        return new StatusCheckbox(this);
     }
 
     #dueDate() {
@@ -189,6 +162,55 @@ class Input {
     }
 }
 
+class StatusCheckbox extends Input {
+    constructor(task) {
+        let checkbox = super(
+            "checkbox",
+            "isComplete",
+            "true");
+
+        this.id = task.id;
+        this.priority = task.priority;
+        this.isComplete = task.isComplete;
+
+        checkbox.className += this.#color();
+        checkbox.checked = this.#checked();
+
+        checkbox.addEventListener("click", (event) => {
+            let saver = new saveEvent(event, this.id);
+        })
+
+        return checkbox;
+    }
+
+    #color() {
+        switch (this.priority) {
+            case 0:
+                return " red";
+                break;
+    
+            case 1:
+                return " yellow";
+                break;
+    
+            case 2:
+                return " green";
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+    #checked() {
+        if (this.isComplete == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 class TextArea {
     constructor(name, value = "") {
         let textareaWrapper = document.createElement("div");
@@ -230,33 +252,11 @@ class SaveButton extends Button {
         let button = super("save", "submit");
         
         this.id = id;
-        button.addEventListener("click", (event) => this.#saveEvent(event));
+        button.addEventListener("click", (event) => {
+            let saver = new saveEvent(event, this.id);
+        });
 
         return button;
-    }
-
-    #saveEvent(event) {
-        event.preventDefault();
-        
-        let task = this.#getFormData();
-        tasks.updateTask(task, this.id);
-    }
-
-    #getFormData() {
-        let form = document.querySelector(`#task-${this.id}`);
-        let title = String(form.title.value);
-        let dueDate = new Date(form.dueDate.value);
-        let description = String(form.description.value);
-        let priority = Number(form.priority.value);
-        let isComplete = Boolean(form.isComplete.checked);
-
-        return {
-            title,
-            dueDate,
-            description,
-            priority,
-            isComplete
-        }
     }
 }
 
@@ -277,3 +277,26 @@ class CancelButton extends Button {
     }
 }
 
+function saveEvent(event, id) {
+    event.preventDefault();
+        
+    let task = getFormData(id);
+    tasks.updateTask(task, id); 
+}
+
+function getFormData(id) {
+    let form = document.querySelector(`#task-${id}`);
+    let title = String(form.title.value);
+    let dueDate = new Date(form.dueDate.value);
+    let description = String(form.description.value);
+    let priority = Number(form.priority.value);
+    let isComplete = Boolean(form.isComplete.checked);
+
+    return {
+        title,
+        dueDate,
+        description,
+        priority,
+        isComplete
+    }
+}
