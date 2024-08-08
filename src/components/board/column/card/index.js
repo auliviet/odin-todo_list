@@ -156,7 +156,7 @@ class StatusCheckbox extends Input {
                 return " green";
         
             default:
-                break;
+                return "";
         }
     }
 
