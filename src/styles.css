@@ -105,7 +105,7 @@ body {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
-  width: max(320px, 60vw);
+  width: clamp(320px, 90%, 500px);
   margin: auto;
 
   @media (min-width: 1024px) {
