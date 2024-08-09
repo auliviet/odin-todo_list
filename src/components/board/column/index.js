@@ -1,4 +1,4 @@
-import { Card } from "./card";
+import { Card, NewCard } from "./card";
 
 import "./styles.css";
 
@@ -29,6 +29,8 @@ export class Column {
             let card = new Card(currentTask);
             list.append(card);
         }
+
+        list.append(new NewCard());
 
         return list;
     }
