@@ -46,6 +46,10 @@ export class Todo {
         new DOM(this); 
     }
 
+    get length() {
+        return this.tasks.length;
+    }
+
     get overdue() {
         let startDate = new DateOnly(1);
         let endDate = endOfYesterday();
