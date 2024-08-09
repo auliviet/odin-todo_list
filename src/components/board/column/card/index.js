@@ -120,7 +120,16 @@ export class NewCard {
     #ctaCard() {
         let card = document.createElement("li");
         card.className = "card card--new";
-        card.textContent = "Add task";
+
+        let icon = document.createElement("div");
+        icon.className = "card__add-symbol";
+        icon.textContent = "+";
+        card.append(icon);
+
+        let cta = document.createElement("h3");
+        cta.className = "card__add-cta";
+        cta.textContent = "Add new";
+        card.append(cta);
 
         return card;
     }
