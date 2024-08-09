@@ -145,3 +145,32 @@
     }
   }
 }
+
+.card--new {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  margin-bottom: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  & .card__add-symbol {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--dark-grey);
+    border: 3px solid var(--dark-grey);
+    border-radius: 2rem;
+  }
+
+  & .card__add-cta {
+    font-size: 2rem;
+    line-height: 2rem;
+    color: var(--dark-grey);
+  }
+}

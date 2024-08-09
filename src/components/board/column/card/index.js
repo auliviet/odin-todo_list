@@ -147,7 +147,6 @@ export class NewCard {
 
     #render() {
         let card = document.createElement("div");
-        card.className = "card--new";
 
         let callToAction = this.#ctaCard();
         card.append(callToAction)
