@@ -1,4 +1,5 @@
 import { Column } from "./column";
+import { DateOnly } from "../../scripts/tasks";
 
 import "./styles.css";
 
@@ -17,11 +18,26 @@ export class Board {
         let section = document.createElement("section");
         section.className = "board";
 
-        section.append(new Column("Overdue", this.overdue));
-        section.append(new Column("Tooday", this.today));
-        section.append(new Column("This week", this.thisWeek));
-        section.append(new Column("This month", this.thisMonth));
-        section.append(new Column("Later", this.later));
+        section.append(new Column(
+            "Overdue", 
+            this.overdue, 
+            DateOnly.newTaskOverdue));
+        section.append(new Column(
+            "Tooday", 
+            this.today,
+            DateOnly.newTaskToday));
+        section.append(new Column(
+            "This week", 
+            this.thisWeek, 
+            DateOnly.newTaskThisWeek));
+        section.append(new Column(
+            "This month", 
+            this.thisMonth,
+            DateOnly.newTaskThisMonth));
+        section.append(new Column(
+            "Later", 
+            this.later,
+            DateOnly.newTaskLater));
 
         return section;
     }

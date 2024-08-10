@@ -3,10 +3,11 @@ import { Card, NewCard } from "./card";
 import "./styles.css";
 
 export class Column {
-    constructor(title, data) {
+    constructor(title, data, newTaskDate) {
         this.title = title;
         this.class = title.toLowerCase().replace(" ", "-");
         this.tasks = data;
+        this.newTaskDate = newTaskDate;
 
 
         return this.#render();
@@ -30,7 +31,7 @@ export class Column {
             list.append(card);
         }
 
-        list.append(new NewCard());
+        list.append(new NewCard(this.newTaskDate));
 
         return list;
     }

@@ -1,3 +1,11 @@
+import { 
+    add,
+    endOfYesterday, 
+    startOfMonth, 
+    startOfToday, 
+    startOfTomorrow,
+    startOfWeek } from 'date-fns';
+
 export class Task {
     constructor(obj, id= 0) {
             this.id = Number(id);
@@ -32,6 +40,32 @@ export class DateOnly {
         let day = date .getDate();
 
         return new Date(year, month, day);
+    }
+
+    static get newTaskOverdue () {
+        return endOfYesterday();
+    }
+
+    static get newTaskToday() {
+        return startOfToday();
+    }
+
+    static get newTaskThisWeek () {
+        return startOfTomorrow();
+    }
+
+    static get newTaskThisMonth() {
+        let thisWeek = startOfWeek(startOfToday(), { weekStartsOn: 1});
+        let nextWeek = add(thisWeek, {weeks: 1});
+
+        return nextWeek;
+    }
+
+    static get newTaskLater() {
+        let thisMonth = startOfMonth(startOfToday());
+        let nextMonth = add(thisMonth, {months: 1});
+
+        return nextMonth
     }
 }
 
