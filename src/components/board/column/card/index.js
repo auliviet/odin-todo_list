@@ -32,11 +32,16 @@ export class Card {
             buttons
         );
 
-        form.addEventListener("click", () => {
-            this.#displayButtonsEvent(buttons);
-            this.#displayDescriptionEvent(description)
-        })
-
+        for (let field of form) {
+            if (field.className != "card__header" && 
+                field.name != "isComplete") {
+                field.addEventListener("focusin", () => {
+                    this.#displayButtonsEvent(buttons);
+                    this.#displayDescriptionEvent(description);
+                });
+            }
+        }
+        
         return form;
     }
 
@@ -153,7 +158,10 @@ export class NewCard {
 
         callToAction.addEventListener("click", (event) => {
             callToAction.style.display = "none";
-            card.append(this.#editableCard())
+            let newForm = this.#editableCard();
+            card.append(newForm);
+
+            newForm.querySelector("#title").focus();
         })
 
         return card;
@@ -188,8 +196,8 @@ class StatusCheckbox extends Input {
         checkbox.checked = this.#checked();
 
         checkbox.addEventListener("click", (event) => {
-            let saver = new saveEvent(event, this.id);
-        })
+            new saveEvent(event, this.id);
+        });
 
         return checkbox;
     }
@@ -301,7 +309,7 @@ class SaveButton extends Button {
         
         this.id = id;
         button.addEventListener("click", (event) => {
-            let saver = new saveEvent(event, this.id);
+            new saveEvent(event, this.id);
         });
 
         return button;
