@@ -99,8 +99,9 @@ export class Todo {
 
     #sortByPriority(tasks = this.tasks) {
         let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
+        let tasksCompleted = tasksSorted.toSorted((a, b) => a.isComplete - b.isComplete)
 
-        return tasksSorted;
+        return tasksCompleted;
     }
 
     #filterByDate(startDate, endDate) {
