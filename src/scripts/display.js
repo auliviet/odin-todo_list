@@ -10,8 +10,12 @@ export class DOM {
 
     #render() {
         let body = document.querySelector("body");
-        body.textContent = ""
+        body.textContent = "";
 
+        let h1 = document.createElement("h1");
+        h1.textContent = "Toodoo";
+        
+        body.append(h1);
         body.append(new Board(this.tasks));
     }
 }
