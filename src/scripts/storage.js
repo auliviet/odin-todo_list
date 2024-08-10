@@ -1,4 +1,5 @@
-import data from "../test.json";
+// import data from "../test.json";
+import { data } from "../testData";
 import { Todo } from "..";
 
 export class Storage {
