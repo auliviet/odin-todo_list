@@ -1,7 +1,7 @@
 .card {
   list-style: none;
   margin-bottom: 2rem;
-  padding: 1rem 2rem 2rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
   background-color: var(--white);
 
@@ -67,7 +67,7 @@
     }
 
     & .card__dueDate {
-      flex: 0;
+      flex: 0 0 auto;
     }
 
     & .card__priority {
@@ -109,6 +109,7 @@
 
   & .card__textarea-wrapper-description::after,
   & .card__description {
+    margin-bottom: 1rem;
     padding: 0;
     font-size: 1.5rem;
     color: var(--dark-grey);
@@ -119,7 +120,7 @@
     flex-flow: row;
     gap: 2rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
 
     & button {
       height: 2rem;
