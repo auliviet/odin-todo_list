@@ -26,7 +26,6 @@ Exercise for the Odin Project - Full-stack JavaScript on organising JavaScript
 -- You can inspect data you saved in localStorage using DevTools. 
 
 # TODO 
-- Get textarea to match the height of the content
-- Remove the calendar from the date input
-- tSubmit updates to task
-- Create new tasks
+- Filter only open tasks
+- Add projects
+- Change date of tasks in Test
