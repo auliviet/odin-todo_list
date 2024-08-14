@@ -53,7 +53,7 @@ export class Todo {
     get overdue() {
         let startDate = new DateOnly(1);
         let endDate = endOfYesterday();
-        let overdueTasks = this.#filterByDate(startDate, endDate);
+        let overdueTasks = this.#sortByDate(startDate, endDate);
 
         return this.#sortByPriority(overdueTasks);
     }
@@ -61,7 +61,7 @@ export class Todo {
     get today() {
         let startDate = startOfToday();
         let endDate = endOfToday();
-        let todayTasks = this.#filterByDate(startDate, endDate);
+        let todayTasks = this.#sortByDate(startDate, endDate);
 
         return this.#sortByPriority(todayTasks);
     }
@@ -69,7 +69,7 @@ export class Todo {
     get thisWeek() {
         let startDate = startOfTomorrow();
         let endDate = endOfWeek(startOfToday(), { weekStartsOn: 1 }); 
-        let thisWeekTasks = this.#filterByDate(startDate, endDate);
+        let thisWeekTasks = this.#sortByDate(startDate, endDate);
 
         return this.#sortByPriority(thisWeekTasks);
     }
@@ -80,7 +80,7 @@ export class Todo {
 
         let startDate = nextWeek; 
         let endDate = endOfMonth(startOfToday());
-        let thisMonthTasks = this.#filterByDate(startDate, endDate);
+        let thisMonthTasks = this.#sortByDate(startDate, endDate);
 
         return this.#sortByPriority(thisMonthTasks);
     }
@@ -92,7 +92,7 @@ export class Todo {
 
         let startDate = nextMonth;
         let endDate = endOfTime;
-        let laterTasks = this.#filterByDate(startDate, endDate);
+        let laterTasks = this.#sortByDate(startDate, endDate);
 
         return this.#sortByPriority(laterTasks);
     }
@@ -104,7 +104,7 @@ export class Todo {
         return tasksCompleted;
     }
 
-    #filterByDate(startDate, endDate) {
+    #sortByDate(startDate, endDate) {
         startDate = new DateOnly(startDate);
         endDate = new DateOnly(endDate);
 
