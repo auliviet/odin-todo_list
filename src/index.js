@@ -18,6 +18,7 @@ import './styles.css';
 export class Todo {
     constructor(data) {
         this.tasks = [];
+        this.filterByCompletionStatus = false;
 
         for (let id in data) {
             let currentTask = data[id];
@@ -44,6 +45,16 @@ export class Todo {
         Storage.populateStorage(this.tasks);
         
         new DOM(this); 
+    }
+
+    set filterComplete(bool) {
+        this.filterByCompletionStatus = bool;
+
+        new DOM(this);
+    }
+
+    get filterComplete() {
+        return this.filterByCompletionStatus;
     }
 
     get length() {
@@ -97,6 +108,24 @@ export class Todo {
         return this.#sortByPriority(laterTasks);
     }
 
+    #filterByCompletionStatus() {
+        let tasksFiltered = [];
+
+        if (this.filterByCompletionStatus == false) {
+            for (let task in this.tasks) {
+                let currentTask = this.tasks[task];
+    
+                if (currentTask.isComplete == false) {
+                    tasksFiltered.push(currentTask);
+                }
+            }
+        } else {
+            tasksFiltered = this.tasks;
+        }  
+
+        return tasksFiltered;
+    }
+
     #sortByPriority(tasks = this.tasks) {
         let tasksSorted = tasks.toSorted((a, b) => a.priority - b.priority);
         let tasksCompleted = tasksSorted.toSorted((a, b) => a.isComplete - b.isComplete)
@@ -108,19 +137,20 @@ export class Todo {
         startDate = new DateOnly(startDate);
         endDate = new DateOnly(endDate);
 
-        let tasksFiltered = [];
+        let tasksFiltered = this.#filterByCompletionStatus();
+        let tasksSorted = []; 
 
-        for (let task in this.tasks) {
-            let currentTask = this.tasks[task];
+        for (let task in tasksFiltered) {
+            let currentTask = tasksFiltered[task];
             let dueDate = new DateOnly(currentTask.dueDate);
 
             if (dueDate >= startDate &&
                 dueDate <= endDate) {
-                    tasksFiltered.push(currentTask);
+                    tasksSorted.push(currentTask);
                 }
         }
 
-        return tasksFiltered;
+        return tasksSorted;
     }
 }
 
