@@ -1,4 +1,5 @@
 import { Card, NewCard } from "./card";
+import { tasks } from "../../..";
 
 import "./styles.css";
 
@@ -31,7 +32,9 @@ export class Column {
             list.append(card);
         }
 
-        list.append(new NewCard(this.newTaskDate));
+        if (this.title != "Overdue") {
+            list.append(new NewCard(this.newTaskDate));
+        }
 
         return list;
     }
