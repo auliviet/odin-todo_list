@@ -336,8 +336,7 @@ class CancelButton extends Button {
 
 class DeleteButton extends Button {
     constructor(id) {
-        let button = super("x", "submit");
-        button.className = "card__button-delete"
+        let button = super("delete", "submit");
         
         this.id = id;
         button.addEventListener("click", (event) => this.#deleteEvent(event, this.id));

@@ -144,6 +144,15 @@
           background-color: var(--green);
         }
       }
+
+      &.card__button-delete {
+        background-color: var(--red80);
+        color: var(--white);
+  
+        &:hover {
+          background-color: var(--red);
+        }
+      }
     }
   }
 }
