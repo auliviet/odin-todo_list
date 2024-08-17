@@ -2,7 +2,7 @@
 Exercise for the Odin Project - Full-stack JavaScript on organising JavaScript
 
 ## Preview link
-[ TO BE ADDED]
+https://auliviet.github.io/odin-todo_list/
 
 ## Instructions
 - Your ‘todos’ are going to be objects that you’ll want to dynamically create.
