@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  flex-flow: column;
+  gap: 4rem;
+  margin-bottom: 4rem;
+
+  @media (min-width: 1024px) {
+    flex-flow: row;
+  }
+
+  & button {
+    width: fit-content;
+    padding: 0 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 4rem;
+    color: var(--dark-grey);
+    background-color: var(--grey);
+    border-radius: 1rem;
+    cursor: pointer;
+
+    &.active {
+      color: var(--light-grey);
+      background-color: var(--dark-grey);
+    }
+    
+    &:hover {
+      box-shadow: 0 0 .5rem var(--black25);
+    }
+  }
+
+}

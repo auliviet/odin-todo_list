@@ -15,7 +15,7 @@ export class DOM {
         let h1 = document.createElement("h1");
         h1.textContent = "Toodoo";
         
-        body.append(h1);
+        body.append(new Navigation());
         body.append(new Board(this.tasks));
     }
 }
