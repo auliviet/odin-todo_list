@@ -90,7 +90,8 @@ export class Card {
 
         buttonsRow.append(
             new CancelButton(this.id),
-            new SaveButton(this.id)
+            new SaveButton(this.id),
+            new DeleteButton(this.id)
         )
 
         return buttonsRow;
@@ -330,6 +331,24 @@ class CancelButton extends Button {
         event.preventDefault();
         
         tasks.cancelTask();
+    }
+}
+
+class DeleteButton extends Button {
+    constructor(id) {
+        let button = super("x", "submit");
+        button.className = "card__button-delete"
+        
+        this.id = id;
+        button.addEventListener("click", (event) => this.#deleteEvent(event, this.id));
+
+        return button;
+    }
+
+    #deleteEvent(event, id) {
+        event.preventDefault();
+        
+        tasks.deleteTask(id);
     }
 }
 

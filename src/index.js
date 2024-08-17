@@ -34,6 +34,11 @@ export class Todo {
         
         new DOM(this); 
     }
+
+    deleteTask(id) {
+        this.tasks.splice(id, 1);
+        new DOM(this);
+    }
     
     cancelTask() {
         new DOM(this);  
