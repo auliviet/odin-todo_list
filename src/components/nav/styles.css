@@ -6,11 +6,18 @@
 
   @media (min-width: 1024px) {
     flex-flow: row;
+    justify-content: space-between;
+  }
+
+  & h1 {
+    margin-bottom: 0;
   }
 
   & button {
+    height: fit-content;
     width: fit-content;
     padding: 0 4rem;
+    align-self: flex-end;
     font-size: 2rem;
     font-weight: bold;
     line-height: 4rem;
